@@ -12,10 +12,10 @@ export const Navbar = () => {
   <Box sx={{marginBottom:"25px"}}>
   <AppBar sx={{backgroundColor:"black"}}>
         <Toolbar>
-            <Typography variant="h6"
+            <Typography sx={{cursor:"pointer"}} onClick={()=>navigate("/")} variant="h6"
             noWrap
             component="div">
-                IMDM
+                IMDB
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
             <TextField onChange={(e)=>setSearchData(e.target.value)} sx={{backgroundColor:"white",width:"25rem"}}   label="Search movies with title,cast and director..." variant="outlined"  size="small" />

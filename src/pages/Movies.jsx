@@ -1,7 +1,7 @@
 import { Box, MenuItem, Select, Typography } from "@mui/material";
 import { useDataContext } from "../context/DataContext"
 import { MovieCard } from "../components/MovieCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddMovieModal } from "../components/AddMovieModal";
 
 
@@ -12,8 +12,21 @@ export const Movies = () => {
 
   const ratingArray=["Rating",...Array.from({length:10-1+1},(_,index)=> 1 + index)];
  
+  const localStorageFilters=JSON.parse(localStorage.getItem("filters"));
 
-  const[filters,setFilters]=useState({genre:genreArray[0],year:yearsArray[0],rating:ratingArray[0]})
+  const initialFilters=localStorageFilters ? localStorageFilters :{genre:genreArray[0],  year:yearsArray[0],rating:ratingArray[0]};
+
+   const[filters,setFilters]=useState(initialFilters);
+
+  
+
+   useEffect(()=>{
+    localStorage.setItem("filters",JSON.stringify(filters));
+   },[filters])
+
+
+
+
 
   const handleGenreChange = (event) => {
     setFilters(prev=>{return{...prev,genre:event.target.value}});

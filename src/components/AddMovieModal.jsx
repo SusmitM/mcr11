@@ -50,9 +50,9 @@ export const AddMovieModal = () => {
     setNewMovie({
       id: uuidv4(),
       title: "",
-      year: 0,
+      year: "",
       genre: [],
-      rating: 0,
+      rating: "",
       director: "",
       writer: "",
       cast: [],

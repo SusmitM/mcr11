@@ -18,6 +18,30 @@ export const DataReducer=(dataState,action)=>{
                       }]
             }
         }
+        case "Add-Watchlist":{
+            const selectedMovie=dataState.allMovies.find(({id})=>id===action.selectedId);
+            return{
+                ...dataState,watchlist:[...dataState.watchlist,selectedMovie]
+            }
+        }
+        case "Remove-Watchlist":{
+            
+            return{
+                ...dataState,watchlist:dataState.watchlist.filter(({id})=>id!==action.selectedId)
+            }
+        }
+        case "Add-Starred":{
+            const selectedMovie=dataState.allMovies.find(({id})=>id===action.selectedId);
+            return{
+                ...dataState,starred:[...dataState.starred,selectedMovie]
+            }
+        }
+        case "Remove-Starred":{
+            
+            return{
+                ...dataState,starred:dataState.starred.filter(({id})=>id!==action.selectedId)
+            }
+        }
         default: return dataState
     }
 }

@@ -12,10 +12,11 @@ export const DataContextProvider=({children})=>{
     const [movieData,movieDispatch]=useReducer(DataReducer,initialData);
 
     const addDataToLocalStorage=()=>{
-        localStorage.setItem("movieData",JSON.stringify({allMovies:[...movies],watchlist:[],starred:[]}))
+        localStorage.setItem("movieData",JSON.stringify(movieData))
     }
+   
     const getAllGenre=()=>{
-        let allGenre= movies.reduce((genres, movie) => {
+        let allGenre= movieData?.allMovies.reduce((genres, movie) => {
             movie.genre.forEach(genre => {
               if (!genres.includes(genre)) {
                 genres.push(genre);
